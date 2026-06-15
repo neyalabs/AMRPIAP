@@ -93,7 +93,7 @@ nav {
 .hero-bg-slide.active { opacity: 1; }
 .hero-bg-slide img {
   width: 100%; height: 100%;
-  object-fit: cover; object-position: center center;
+  object-fit: cover; object-position: center 75%;
   display: block;
 }
 
@@ -253,7 +253,7 @@ nav {
 /* ── NUMBERS ── */
 #numbers {
   background: var(--ink);
-  display: grid; grid-template-columns: repeat(3, 1fr);
+  display: grid; grid-template-columns: repeat(5, 1fr);
 }
 .num-cell {
   padding: 64px 48px;
@@ -261,6 +261,7 @@ nav {
   position: relative; overflow: hidden;
 }
 .num-cell:last-child { border-right: none; }
+.num-cell:nth-child(5) { border-right: none; }
 .num-cell::after {
   content: ''; position: absolute; top: 0; left: 0; right: 0;
   height: 3px; background: var(--green);
@@ -571,9 +572,15 @@ footer {
 }
 
 /* ── RESPONSIVE ── */
+@media (max-width: 1200px) and (min-width: 901px) {
+  #numbers { grid-template-columns: repeat(3, 1fr); }
+  .num-cell:nth-child(3) { border-right: none; }
+  .num-cell:nth-child(4), .num-cell:nth-child(5) { border-top: 1px solid rgba(255,255,255,0.08); }
+}
+
 @media (max-width: 900px) {
   #hero { padding: 80px 20px 100px; }
-  .hero-bg-slide img { object-position: 70% center; }
+  .hero-bg-slide img { object-position: center 75%; }
   .scene-dots { position: absolute; bottom: 0; }
   .scene-dot { font-size: 9px; padding: 10px 4px; }
   nav { padding: 16px 20px; }
@@ -656,15 +663,29 @@ footer {
 <!-- NUMBERS -->
 <div id="numbers" aria-label="Key specifications">
   <div class="num-cell">
-    <div class="num-big">550<span class="num-unit">kg</span></div>
+    <div class="num-big">500<span class="num-unit">kg</span></div>
     <div class="num-label">Payload Capacity</div>
-    <div class="num-desc">Heavy-duty industrial transport without compromise.</div>
+    <div class="num-desc">Nominalna nośność. Masa własna ok. 150 kg.</div>
   </div>
-
+  <div class="num-cell">
+    <div class="num-big" style="font-size:clamp(28px,3.5vw,52px)">1900<span class="num-unit" style="font-size:0.5em">×900</span></div>
+    <div class="num-label">Dimensions (mm)</div>
+    <div class="num-desc">Height 280 mm. Compact footprint for narrow-aisle operation.</div>
+  </div>
   <div class="num-cell">
     <div class="num-big">360<span class="num-unit">°</span></div>
     <div class="num-label">Sensor Coverage</div>
-    <div class="num-desc">Omnidirectional LIDAR and camera perception system.</div>
+    <div class="num-desc">SICK laser scanners — omnidirectional environment mapping.</div>
+  </div>
+  <div class="num-cell">
+    <div class="num-big">NFN<span class="num-unit" style="font-size:0.4em;vertical-align:super">ANS+</span></div>
+    <div class="num-label">Navigation</div>
+    <div class="num-desc">Natural Features Navigation — Simove ANS+ by Siemens. No floor markers.</div>
+  </div>
+  <div class="num-cell">
+    <div class="num-big">50<span class="num-unit">+</span></div>
+    <div class="num-label">Years of Expertise</div>
+    <div class="num-desc">Łukasiewicz–PIAP — Poland's leading robotics research institute.</div>
   </div>
 </div>
 
@@ -751,7 +772,7 @@ footer {
 <!-- TECHNOLOGY -->
 <section id="technology">
   <div class="section-eyebrow">Core Technology</div>
-  <h2 class="section-title">Polish Engineering. European Standards.<br><span style="font-size:0.55em;font-weight:400;color:var(--green);">Autonomy powered by <a href="https://github.com/" target="_blank" rel="noopener" style="color:var(--green);text-decoration:underline;">FIMIK</a></span></h2>
+  <h2 class="section-title">Polish Engineering. European Standards.<br><span style="font-size:0.55em;font-weight:400;color:var(--green);">Autonomy powered by <a href="https://github.com/neyalabs/AMRPIAP" target="_blank" rel="noopener" style="color:var(--green);text-decoration:underline;">FIMIK</a></span></h2>
   <p class="section-lead">Designed and manufactured at Łukasiewicz–PIAP — one of Poland's leading robotics research institutes with over 50 years of operational experience. The X550 is built on the Siemens Simove standardized platform, using widely adopted industrial components for lower lifetime operating costs and maximum configuration flexibility.</p>
   <div class="tech-layout">
     <ul class="tech-list">
@@ -780,10 +801,10 @@ footer {
 
       <!-- Video player in technology section -->
       <div class="tech-video-wrap">
-        <video id="techVideo" src="System_AMR__1__-_Trim.mp4"
-               muted playsinline preload="metadata"
+        <video id="techVideo" src="https://neyalabs.github.io/AMRPIAP/AMR.mp4"
+               autoplay loop muted playsinline
                style="width:100%;display:block;"></video>
-        <div class="tech-video-overlay" id="techVideoOverlay">
+        <div class="tech-video-overlay hidden" id="techVideoOverlay">
           <button class="tech-video-play" id="techPlayBtn" aria-label="Play video">
             <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><polygon points="5,3 19,12 5,21"/></svg>
           </button>
